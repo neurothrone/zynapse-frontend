@@ -1,8 +1,8 @@
+import AppRouter from "./routes/AppRouter.tsx";
+
 function App() {
   return (
-    <>
-      <h1 className="text-center text-4xl">Zynapse</h1>
-    </>
+    <AppRouter/>
   )
 }
 
