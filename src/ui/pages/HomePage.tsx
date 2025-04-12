@@ -1,4 +1,4 @@
-import ProductList from "./ProductList";
+import ProductList from "../components/home/ProductList.tsx";
 
 const HomePage = () => {
   return (

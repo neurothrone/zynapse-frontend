@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import HomePage from "../ui/features/home/HomePage.tsx";
+import HomePage from "../ui/pages/HomePage.tsx";
 
 const AppRouter = () => {
   return (
