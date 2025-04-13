@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { createClient, SupabaseClient, User, AuthResponse } from "@supabase/supabase-js";
+import { createClient, SupabaseClient, AuthResponse } from "@supabase/supabase-js";
 import { RootState } from "../index";
 
 // Initialize Supabase client
@@ -12,7 +12,6 @@ export interface UserData {
   id: string;
   email: string;
   username?: string;
-  avatar_url?: string;
 }
 
 // Define auth state
@@ -43,18 +42,9 @@ export const signIn = createAsyncThunk(
 
       if (error) throw error;
 
-      // Get user profile data
-      const { data: profileData } = await supabase
-        .from("profiles")
-        .select("username, avatar_url")
-        .eq("id", data.user?.id)
-        .single();
-
       return {
         id: data.user?.id,
         email: data.user?.email,
-        username: profileData?.username,
-        avatar_url: profileData?.avatar_url,
       } as UserData;
     } catch (error) {
       if (error instanceof Error) {
@@ -73,20 +63,16 @@ export const signUp = createAsyncThunk(
       const { data, error }: AuthResponse = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: {
+            username
+          }
+        }
       });
 
       if (error) throw error;
 
       if (data.user) {
-        // Create profile
-        const { error: profileError } = await supabase
-          .from("profiles")
-          .insert([
-            { id: data.user.id, username, email }
-          ]);
-
-        if (profileError) throw profileError;
-
         return {
           id: data.user.id,
           email: data.user.email,
@@ -129,18 +115,10 @@ export const getCurrentUser = createAsyncThunk(
       if (error) throw error;
 
       if (data.user) {
-        // Get user profile data
-        const { data: profileData } = await supabase
-          .from("profiles")
-          .select("username, avatar_url")
-          .eq("id", data.user.id)
-          .single();
-
         return {
           id: data.user.id,
           email: data.user.email,
-          username: profileData?.username,
-          avatar_url: profileData?.avatar_url,
+          username: data.user.user_metadata?.username,
         } as UserData;
       }
 
