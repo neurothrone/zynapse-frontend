@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../types/product';
-import { RootState } from '../index';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "../../types/product";
+import { RootState } from "../index";
 
 // Define a cart item type that extends Product with quantity
 export interface CartItem extends Product {
@@ -28,7 +28,7 @@ const initialState: CartState = {
 
 // Create the cart slice
 export const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     // Add an item to the cart

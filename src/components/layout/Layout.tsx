@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import Navbar from './Navbar';
-import CartDrawer from '../cart/CartDrawer';
+import { ReactNode } from "react";
+import Navbar from "./Navbar";
+import CartDrawer from "../cart/CartDrawer";
 
 interface LayoutProps {
   children: ReactNode;

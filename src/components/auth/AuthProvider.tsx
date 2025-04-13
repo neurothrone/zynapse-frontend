@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getCurrentUser, clearError, supabase } from '../../store/slices/authSlice';
-import { useLocation } from 'react-router';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getCurrentUser, clearError, supabase } from "../../store/slices/authSlice";
+import { useLocation } from "react-router";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     // Check if we're on login or register page
-    const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+    const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
 
     if (isAuthPage) {
       // Clear any auth errors when on login or register pages

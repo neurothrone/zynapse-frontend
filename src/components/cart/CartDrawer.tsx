@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router';
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router";
 import {
   selectCartItems,
   selectCartTotal,
@@ -8,7 +8,7 @@ import {
   removeItem,
   updateQuantity,
   clearCart
-} from '../../store/slices/cartSlice';
+} from "../../store/slices/cartSlice";
 
 const CartDrawer = () => {
   const dispatch = useDispatch();

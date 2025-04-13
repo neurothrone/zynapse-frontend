@@ -1,8 +1,8 @@
-import { useParams, useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { useGetProductQuery } from '../../store/api';
-import { addItem } from '../../store/slices/cartSlice';
-import Layout from '../../components/layout/Layout';
+import { useParams, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { useGetProductQuery } from "../../store/api";
+import { addItem } from "../../store/slices/cartSlice";
+import Layout from "../../components/layout/Layout";
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -82,9 +82,9 @@ const ProductDetailPage = () => {
               <div className="flex items-center mb-6">
                 <span className="text-3xl font-bold text-purple-400 mr-4">${product.price}</span>
                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  product.stock > 0 ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'
+                  product.stock > 0 ? "bg-green-900/30 text-green-400" : "bg-red-900/30 text-red-400"
                 }`}>
-                  {product.stock > 0 ? `In Stock (${product.stock})` : 'Out of Stock'}
+                  {product.stock > 0 ? `In Stock (${product.stock})` : "Out of Stock"}
                 </span>
               </div>
 
@@ -124,13 +124,13 @@ const ProductDetailPage = () => {
                   onClick={handleAddToCart}
                   disabled={product.stock === 0}
                   className={`btn-primary flex-1 py-3 flex items-center justify-center ${
-                    product.stock === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                    product.stock === 0 ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
-                  {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+                  {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
                 </button>
 
                 {product.steamLink && (

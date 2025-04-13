@@ -1,8 +1,8 @@
-import { Link } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { selectIsAuthenticated, selectUser, signOut } from '../../store/slices/authSlice';
-import { selectCartItemCount, toggleCart } from '../../store/slices/cartSlice';
+import { Link } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { selectIsAuthenticated, selectUser, signOut } from "../../store/slices/authSlice";
+import { selectCartItemCount, toggleCart } from "../../store/slices/cartSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <div className="flex items-center space-x-4">
               <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-                {user?.username || 'Dashboard'}
+                {user?.username || "Dashboard"}
               </Link>
               <button
                 onClick={handleSignOut}

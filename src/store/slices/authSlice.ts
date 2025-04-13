@@ -1,10 +1,10 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { createClient, SupabaseClient, User, AuthResponse } from '@supabase/supabase-js';
-import { RootState } from '../index';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createClient, SupabaseClient, User, AuthResponse } from "@supabase/supabase-js";
+import { RootState } from "../index";
 
 // Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
 const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey);
 
 // Define user type
@@ -33,7 +33,7 @@ const initialState: AuthState = {
 
 // Async thunks for authentication
 export const signIn = createAsyncThunk(
-  'auth/signIn',
+  "auth/signIn",
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const { data, error }: AuthResponse = await supabase.auth.signInWithPassword({
@@ -45,9 +45,9 @@ export const signIn = createAsyncThunk(
 
       // Get user profile data
       const { data: profileData } = await supabase
-        .from('profiles')
-        .select('username, avatar_url')
-        .eq('id', data.user?.id)
+        .from("profiles")
+        .select("username, avatar_url")
+        .eq("id", data.user?.id)
         .single();
 
       return {
@@ -60,13 +60,13 @@ export const signIn = createAsyncThunk(
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
-      return rejectWithValue('An unknown error occurred');
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
 
 export const signUp = createAsyncThunk(
-  'auth/signUp',
+  "auth/signUp",
   async ({ email, password, username }: { email: string; password: string; username: string }, { rejectWithValue }) => {
     try {
       // Create user
@@ -80,7 +80,7 @@ export const signUp = createAsyncThunk(
       if (data.user) {
         // Create profile
         const { error: profileError } = await supabase
-          .from('profiles')
+          .from("profiles")
           .insert([
             { id: data.user.id, username, email }
           ]);
@@ -94,18 +94,18 @@ export const signUp = createAsyncThunk(
         } as UserData;
       }
 
-      return rejectWithValue('User registration failed');
+      return rejectWithValue("User registration failed");
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
-      return rejectWithValue('An unknown error occurred');
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
 
 export const signOut = createAsyncThunk(
-  'auth/signOut',
+  "auth/signOut",
   async (_, { rejectWithValue }) => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -115,13 +115,13 @@ export const signOut = createAsyncThunk(
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
-      return rejectWithValue('An unknown error occurred');
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
 
 export const getCurrentUser = createAsyncThunk(
-  'auth/getCurrentUser',
+  "auth/getCurrentUser",
   async (_, { rejectWithValue }) => {
     try {
       const { data, error } = await supabase.auth.getUser();
@@ -131,9 +131,9 @@ export const getCurrentUser = createAsyncThunk(
       if (data.user) {
         // Get user profile data
         const { data: profileData } = await supabase
-          .from('profiles')
-          .select('username, avatar_url')
-          .eq('id', data.user.id)
+          .from("profiles")
+          .select("username, avatar_url")
+          .eq("id", data.user.id)
           .single();
 
         return {
@@ -149,14 +149,14 @@ export const getCurrentUser = createAsyncThunk(
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
-      return rejectWithValue('An unknown error occurred');
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
 
 // Create the auth slice
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     clearError: (state) => {

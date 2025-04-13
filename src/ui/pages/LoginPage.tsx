@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router';
-import { signIn, selectAuthError, selectAuthLoading, clearError } from '../../store/slices/authSlice';
-import Layout from '../../components/layout/Layout';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { signIn, selectAuthError, selectAuthLoading, clearError } from "../../store/slices/authSlice";
+import Layout from "../../components/layout/Layout";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -10,8 +10,8 @@ const LoginPage = () => {
   const error = useSelector(selectAuthError);
   const isLoading = useSelector(selectAuthLoading);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,10 +23,10 @@ const LoginPage = () => {
     try {
       const resultAction = await dispatch(signIn({ email, password }));
       if (signIn.fulfilled.match(resultAction)) {
-        navigate('/');
+        navigate("/");
       }
     } catch (err) {
-      console.error('Login failed:', err);
+      console.error("Login failed:", err);
     }
   };
 
@@ -87,7 +87,7 @@ const LoginPage = () => {
 
             <button
               type="submit"
-              className={`btn-primary w-full ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`btn-primary w-full ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -98,13 +98,13 @@ const LoginPage = () => {
                   </svg>
                   Signing in...
                 </span>
-              ) : 'Sign In'}
+              ) : "Sign In"}
             </button>
           </form>
 
           <div className="mt-8 text-center">
             <p className="text-gray-400">
-              Don't have an account?{' '}
+              Don't have an account?{" "}
               <Link to="/register" className="text-purple-400 hover:text-purple-300">
                 Create one
               </Link>

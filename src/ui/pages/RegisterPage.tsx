@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router';
-import { signUp, selectAuthError, selectAuthLoading, clearError } from '../../store/slices/authSlice';
-import Layout from '../../components/layout/Layout';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { signUp, selectAuthError, selectAuthLoading, clearError } from "../../store/slices/authSlice";
+import Layout from "../../components/layout/Layout";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -10,10 +10,10 @@ const RegisterPage = () => {
   const error = useSelector(selectAuthError);
   const isLoading = useSelector(selectAuthLoading);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,27 +25,27 @@ const RegisterPage = () => {
 
     // Validate form
     if (!email || !password || !confirmPassword || !username) {
-      setFormError('All fields are required');
+      setFormError("All fields are required");
       return;
     }
 
     if (password !== confirmPassword) {
-      setFormError('Passwords do not match');
+      setFormError("Passwords do not match");
       return;
     }
 
     if (password.length < 8) {
-      setFormError('Password must be at least 8 characters long');
+      setFormError("Password must be at least 8 characters long");
       return;
     }
 
     try {
       const resultAction = await dispatch(signUp({ email, password, username }));
       if (signUp.fulfilled.match(resultAction)) {
-        navigate('/');
+        navigate("/");
       }
     } catch (err) {
-      console.error('Registration failed:', err);
+      console.error("Registration failed:", err);
     }
   };
 
@@ -132,7 +132,7 @@ const RegisterPage = () => {
 
             <button
               type="submit"
-              className={`btn-primary w-full ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`btn-primary w-full ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -143,13 +143,13 @@ const RegisterPage = () => {
                   </svg>
                   Creating account...
                 </span>
-              ) : 'Create Account'}
+              ) : "Create Account"}
             </button>
           </form>
 
           <div className="mt-8 text-center">
             <p className="text-gray-400">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link to="/login" className="text-purple-400 hover:text-purple-300">
                 Sign in
               </Link>
