@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Product } from "../types/product";
-import { supabase } from "./slices/authSlice";
+import { supabase } from "./slices/auth-slice.ts";
 
 // Define types for API responses
 export interface ProductsResponse {

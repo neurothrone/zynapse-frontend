@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Link, useNavigate } from "react-router";
-import { signIn, selectAuthError, selectAuthLoading, clearError } from "../../store/slices/authSlice";
+import { signIn, selectAuthError, selectAuthLoading, clearError } from "../../store/slices/auth-slice.ts";
 import Layout from "../../components/layout/Layout";
 
 const LoginPage = () => {

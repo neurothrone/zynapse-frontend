@@ -8,7 +8,7 @@ import {
   removeItem,
   updateQuantity,
   clearCart
-} from "../../store/slices/cartSlice";
+} from "../../store/slices/cart-slice.ts";
 
 const CartDrawer = () => {
   const dispatch = useDispatch();

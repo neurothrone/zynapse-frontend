@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../../store/hooks";
-import { getCurrentUser, clearError, supabase } from "../../store/slices/authSlice";
+import { getCurrentUser, clearError, supabase } from "../../store/slices/auth-slice.ts";
 import { useLocation } from "react-router";
 
 interface AuthProviderProps {

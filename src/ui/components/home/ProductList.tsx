@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import { Product } from "../../../types/product.ts";
-import { addItem } from "../../../store/slices/cartSlice";
+import { addItem } from "../../../store/slices/cart-slice.ts";
 import { useGetProductsQuery } from "../../../store/api";
 
 const ProductList = () => {

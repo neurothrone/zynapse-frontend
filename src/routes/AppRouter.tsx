@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from "react-router";
 import { createRoutesFromElements, Route } from "react-router";
-import { selectIsAuthenticated } from "../store/slices/authSlice";
+import { selectIsAuthenticated } from "../store/slices/auth-slice.ts";
 import AuthProvider from "../components/auth/AuthProvider";
 import HomePage from "../ui/pages/HomePage.tsx";
 import LoginPage from "../ui/pages/LoginPage.tsx";

@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { selectIsAuthenticated, selectUser, signOut } from "../../store/slices/authSlice";
-import { selectCartItemCount, toggleCart } from "../../store/slices/cartSlice";
+import { selectIsAuthenticated, selectUser, signOut } from "../../store/slices/auth-slice.ts";
+import { selectCartItemCount, toggleCart } from "../../store/slices/cart-slice.ts";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();

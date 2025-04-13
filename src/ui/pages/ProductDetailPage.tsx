@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { useGetProductQuery } from "../../store/api";
-import { addItem } from "../../store/slices/cartSlice";
+import { addItem } from "../../store/slices/cart-slice.ts";
 import Layout from "../../components/layout/Layout";
 
 const ProductDetailPage = () => {
