@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../store/hooks";
 import { getCurrentUser, clearError, supabase } from "../../store/slices/authSlice";
 import { useLocation } from "react-router";
 
@@ -8,7 +8,7 @@ interface AuthProviderProps {
 }
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
 
   useEffect(() => {

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Link, useNavigate } from "react-router";
 import { signIn, selectAuthError, selectAuthLoading, clearError } from "../../store/slices/authSlice";
 import Layout from "../../components/layout/Layout";
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const error = useSelector(selectAuthError);
-  const isLoading = useSelector(selectAuthLoading);
+  const error = useAppSelector(selectAuthError);
+  const isLoading = useAppSelector(selectAuthLoading);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

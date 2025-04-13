@@ -1,14 +1,14 @@
 import { Link } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { selectIsAuthenticated, selectUser, signOut } from "../../store/slices/authSlice";
 import { selectCartItemCount, toggleCart } from "../../store/slices/cartSlice";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-  const user = useSelector(selectUser);
-  const cartItemCount = useSelector(selectCartItemCount);
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const user = useAppSelector(selectUser);
+  const cartItemCount = useAppSelector(selectCartItemCount);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSignOut = () => {
