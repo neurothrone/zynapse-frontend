@@ -13,7 +13,6 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,7 +23,7 @@ const RegisterPage = () => {
     dispatch(clearError());
 
     // Validate form
-    if (!email || !password || !confirmPassword || !username) {
+    if (!email || !password || !confirmPassword) {
       setFormError("All fields are required");
       return;
     }
@@ -40,7 +39,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const resultAction = await dispatch(signUp({ email, password, username }));
+      const resultAction = await dispatch(signUp({ email, password }));
       if (signUp.fulfilled.match(resultAction)) {
         navigate("/");
       }
@@ -76,19 +75,6 @@ const RegisterPage = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label htmlFor="username" className="block text-gray-300 mb-2">Username</label>
-              <input
-                type="text"
-                id="username"
-                className="input w-full"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                disabled={isLoading}
-              />
-            </div>
-
             <div className="mb-6">
               <label htmlFor="email" className="block text-gray-300 mb-2">Email</label>
               <input

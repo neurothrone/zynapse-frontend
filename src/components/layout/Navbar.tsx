@@ -69,7 +69,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <div className="flex items-center space-x-4">
               <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors">
-                {user?.username || "Dashboard"}
+                Dashboard
               </Link>
               <button
                 onClick={handleSignOut}

@@ -11,7 +11,6 @@ const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey);
 export interface UserData {
   id: string;
   email: string;
-  username?: string;
 }
 
 // Define auth state
@@ -57,17 +56,12 @@ export const signIn = createAsyncThunk(
 
 export const signUp = createAsyncThunk(
   "auth/signUp",
-  async ({ email, password, username }: { email: string; password: string; username: string }, { rejectWithValue }) => {
+  async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
       // Create user
       const { data, error }: AuthResponse = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          data: {
-            username
-          }
-        }
+        password
       });
 
       if (error) throw error;
@@ -76,7 +70,6 @@ export const signUp = createAsyncThunk(
         return {
           id: data.user.id,
           email: data.user.email,
-          username,
         } as UserData;
       }
 
@@ -118,7 +111,6 @@ export const getCurrentUser = createAsyncThunk(
         return {
           id: data.user.id,
           email: data.user.email,
-          username: data.user.user_metadata?.username,
         } as UserData;
       }
 
