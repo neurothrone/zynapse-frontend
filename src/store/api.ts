@@ -42,8 +42,9 @@ export const api = createApi({
     }),
     getProduct: builder.query<Product, number>({
       query: (id) => `/products/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Product', id }],
+      providesTags: (_result: Product | undefined, _error: unknown, id: number) => [{ type: 'Product', id }],
     }),
+
 
     // Additional endpoints will be added for:
     // - Reviews
