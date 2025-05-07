@@ -2,18 +2,15 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { createClient, SupabaseClient, AuthResponse } from "@supabase/supabase-js";
 import { RootState } from "../index";
 
-// Initialize Supabase client
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "";
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
 const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey);
 
-// Define user type
 export interface UserData {
   id: string;
   email: string;
 }
 
-// Define auth state
 interface AuthState {
   user: UserData | null;
   isAuthenticated: boolean;
@@ -21,7 +18,6 @@ interface AuthState {
   error: string | null;
 }
 
-// Initial state
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
